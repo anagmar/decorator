@@ -15,7 +15,7 @@ describe('Decorator',function(){
   });
 
   it('should have an empty paint stock',function(){
-    assert.strictEqual(decorator.inStock(),0);
+    assert.strictEqual(decorator.paintStock,0);
   });
 
   describe('Room',function(){
@@ -37,16 +37,31 @@ describe('Decorator',function(){
   describe('Paint',function(){
     it('should add a can of paint with 20 liters',function(){
       decorator.addCan(20);
-      assert.deepStrictEqual(decorator.paintStock,[20])
+      assert.deepStrictEqual(decorator.paintStock,20)
     })
 
     it('should have a total volume of 100 liters',function(){
       decorator.addCan(30);
       decorator.addCan(20);
       decorator.addCan(50);
-      assert.deepStrictEqual(decorator.paintTotalVolume(),100)
+      assert.strictEqual(decorator.paintStock,100)
     })
 
+    it('should have enough paint to paint room 2',function(){
+      decorator.addCan(30);
+      decorator.addCan(40);
+      decorator.addCan(50);
+
+      assert.strictEqual(decorator.enough(room2),true);
+    })
+
+    it('should not have enough paint to paint room 4',function(){
+      decorator.addCan(30);
+      decorator.addCan(40);
+      decorator.addCan(50);
+
+      assert.strictEqual(decorator.enough(room4),false);
+    })
 
   })
 
