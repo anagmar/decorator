@@ -32,6 +32,14 @@ describe('Decorator',function(){
       room3.paintIt();
       assert.strictEqual(room3.painted,true);
     })
+
+    it('should now be painted',function(){
+      decorator.addCan(30);
+      decorator.addCan(40);
+      decorator.addCan(50);
+      decorator.enough(room1);
+      assert.strictEqual(room1.painted,true);
+    })
   });
 
   describe('Paint',function(){
@@ -61,6 +69,14 @@ describe('Decorator',function(){
       decorator.addCan(50);
 
       assert.strictEqual(decorator.enough(room4),false);
+    })
+
+    it('should have subtracted paint after painting',function(){
+      decorator.addCan(30);
+      decorator.addCan(40);
+      decorator.addCan(50);
+      decorator.enough(room1);
+      assert.strictEqual(decorator.paintStock,90);
     })
 
   })

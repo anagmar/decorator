@@ -22,6 +22,8 @@ Decorator.prototype.addCan = function(volume){
 
 Decorator.prototype.enough = function(room){
   if(room.area <= this.paintStock){
+    this.paintStock = this.paintStock - room.area;
+    room.painted = true;
     return true;
   } else {
     return false;
