@@ -8,10 +8,30 @@ describe('Decorator',function(){
 
   beforeEach(function(){
     decorator = new Decorator("John");
+    room1 = new Room(30);
+    room2 = new Room(100);
+    room3 = new Room(50);
+    room4 = new Room(100000);
   });
 
   it('should have an empty paint stock',function(){
     assert.strictEqual(decorator.inStock(),0);
+  });
+
+  describe('Room',function(){
+
+    it('should have an area of 30 in room 1',function(){
+      assert.strictEqual(room1.area,30);
+    })
+
+    it('should not be painted at the moment in room 2',function(){
+      assert.strictEqual(room2.painted,false)
+    })
+
+    it('should let us paint room 3',function(){
+      room3.paintIt();
+      assert.strictEqual(room3.painted,true);
+    })
   });
 
   describe('Paint',function(){
@@ -26,6 +46,8 @@ describe('Decorator',function(){
       decorator.addCan(50);
       assert.deepStrictEqual(decorator.paintTotalVolume(),100)
     })
+
+
   })
 
 
